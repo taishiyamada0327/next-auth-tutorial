@@ -3,9 +3,8 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import React from "react";
-import GoogleLogo from "../../../../public/logos/google-logo.png";
-import GithubLogo from "../../../../public/logos/github-logo.svg";
-import Link from "next/link";
+import GoogleLogo from "../../../public/logos/google-logo.png";
+import GithubLogo from "../../../public/logos/github-logo.png";
 
 const LoginPage = () => {
   return (
@@ -34,13 +33,6 @@ const LoginPage = () => {
               <Button type="submit" className="w-full">
                 メールでログイン
               </Button>
-              <div className="text-center">
-                <Link href={"/sign-up"}>
-                  <Button className="bg-white text-blue-600" variant={"link"}>
-                    アカウントを持ってませんか？
-                  </Button>
-                </Link>
-              </div>
             </form>
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
@@ -54,10 +46,10 @@ const LoginPage = () => {
             </div>
             <div className="flex items-center justify-around">
               <Button className="bg-white" size={"icon"} variant={"ghost"}>
-                <Image src={GoogleLogo} alt="Google logo" />
+                <Image src={GithubLogo} alt="Google logo" />
               </Button>
               <Button className="bg-white" size={"icon"} variant={"ghost"}>
-                <Image src={GithubLogo} alt="Google logo" />
+                <Image src={GoogleLogo} alt="Google logo" />
               </Button>
             </div>
           </div>
