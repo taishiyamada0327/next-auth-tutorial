@@ -1,10 +1,13 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import Image from "next/image";
-import React from "react";
-import GoogleLogo from "../../../public/logos/google-logo.png";
-import GithubLogo from "../../../public/logos/github-logo.png";
+'use client';
+
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import Image from 'next/image';
+import React from 'react';
+import GoogleLogo from '../../../public/logos/google-logo.png';
+import GithubLogo from '../../../public/logos/github-logo.png';
+import { signIn } from 'next-auth/react';
 
 const LoginPage = () => {
   return (
@@ -45,10 +48,20 @@ const LoginPage = () => {
               </div>
             </div>
             <div className="flex items-center justify-around">
-              <Button className="bg-white" size={"icon"} variant={"ghost"}>
+              <Button
+                onClick={() => signIn('github', { callbackUrl: '/home' })}
+                className="bg-white"
+                size={'icon'}
+                variant={'ghost'}
+              >
                 <Image src={GithubLogo} alt="Google logo" />
               </Button>
-              <Button className="bg-white" size={"icon"} variant={"ghost"}>
+              <Button
+                onClick={() => signIn('google', { callbackUrl: '/home' })}
+                className="bg-white"
+                size={'icon'}
+                variant={'ghost'}
+              >
                 <Image src={GoogleLogo} alt="Google logo" />
               </Button>
             </div>
