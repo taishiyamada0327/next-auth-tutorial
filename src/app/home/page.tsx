@@ -1,11 +1,10 @@
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardHeader,
-  CardFooter,
-} from "@/components/ui/card";
-import { CheckCircle } from "lucide-react";
-import React from "react";
+'use client';
+
+import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardFooter } from '@/components/ui/card';
+import { CheckCircle } from 'lucide-react';
+import { signOut } from 'next-auth/react';
+import React from 'react';
 
 const HomePage = () => {
   return (
@@ -24,7 +23,11 @@ const HomePage = () => {
         </CardHeader>
 
         <CardFooter className="flex flex-col gap-3 p-6">
-          <Button className="w-full" variant="outline">
+          <Button
+            onClick={() => signOut({ callbackUrl: '/login' })}
+            className="w-full"
+            variant="outline"
+          >
             ログアウト
           </Button>
         </CardFooter>
