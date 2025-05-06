@@ -8,8 +8,23 @@ import React from 'react';
 import GoogleLogo from '../../../public/logos/google-logo.png';
 import GithubLogo from '../../../public/logos/github-logo.png';
 import { signIn } from 'next-auth/react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+
+type Inputs = {
+  email: string;
+};
 
 const LoginPage = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>();
+  const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
+    await signIn('email', { email: data.email, callbackUrl: '/home' });
+  };
+
   return (
     <div className="flex min-h-screen items-center justify-center">
       <Card className="w-[400px]">
@@ -18,7 +33,7 @@ const LoginPage = () => {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            <form className="space-y-4">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div>
                 <label
                   htmlFor="email"
@@ -31,6 +46,7 @@ const LoginPage = () => {
                   type="email"
                   placeholder="mail@example.com"
                   className="w-full"
+                  {...register('email', { required: true })}
                 />
               </div>
               <Button type="submit" className="w-full">
